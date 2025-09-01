@@ -1371,6 +1371,24 @@ endef
 
 $(eval $(call KernelPackage,video-gspca-konica))
 
+
+define KernelPackage/video-sun6i-csi
+  SUBMENU:=$(VIDEO_MENU)
+  DEPENDS:=@TARGET_sunxi
+  TITLE:=sun6i-csi
+  KCONFIG:=CONFIG_VIDEO_SUN6I_CSI
+  FILES:=$(LINUX_DIR)/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.ko
+  AUTOLOAD:=$(call AutoProbe,sun6i-csi)
+  $(call AddDepends/camera)
+endef
+
+define KernelPackage/video-sun6i-csi/description
+ The sun6i-csi driver
+endef
+
+$(eval $(call KernelPackage,video-sun6i-csi))
+
+
 #
 # Video Processing
 #
